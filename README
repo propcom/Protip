@@ -1,0 +1,171 @@
+Protip - jQuery tool tip plugin by Propeller Communications
+
+Protip was written because I couldn't find a jQuery tooltip that actually did
+what I wanted.
+
+Here is very quick synopsis of the defaults for all the optiosn.
+
+  $('selector').protip({
+	position: 'top right',
+	anchor: 'mouse',
+	offset: [10, -10],
+	tip: 'next',
+	showEvents: 'mouseenter',
+	hideEvents: 'mouseleave',
+	onBeforeShow: null,
+	onShow: null,
+	onBeforeHide: null,
+	onHide: null
+  });
+
+1. SETUP
+
+In your <head>:
+  <script type="text/javascript" src="/path/to/jquery.protip.js" />
+
+In your JS:
+
+$(function(){
+  $('selector').protip();
+});
+
+Now all elements matching the selector will have a tooltip on mouse over, which
+will disappear on mouse out. To decide what element is used as a tool tip, read 
+on.
+
+
+2. CHOOSING THE TIP
+
+The protip function takes an object containing stuff. Although sensible defaults
+are set up (perhaps), it is a good idea to at least provide a value for the 
+'tip' property.
+
+  $('selector').protip({
+    'tip': function() {
+      return $(this).next();
+    }
+  });
+
+The tip option is a function that returns a jQuery object to be used as the tool
+tip itself. In it, the `this` pointer refers to the DOM element, as with any
+event handler.
+
+You can also provide a string, which will identify one of the predefined tooltip
+functions. Currently the only option is 'next', which mimics the jQuery Tools
+tooltip by taking the immediate successor to the trigger element and using that.
+
+In future releases this function may only be called once per tip for efficiency.
+If you want to modify the tip later you can hook into the beforeShow event.
+
+
+3. EVENTS
+
+The tooltip fires four events: onBeforeShow, onShow, onBeforeHide, onHide. These
+by some extraordinary coincidence are also the names of the keys to the options
+object to provide in order to handle them. They work as any other event; the 
+`this` pointer refers to the DOM element and they are provided an event object.
+
+You can use the API method of calling .protip() in order to programmatically 
+deal with the tip from inside these functions - see below for the API.
+
+Return false from any 'Before' event handler to prevent this thing from actually
+taking place.
+
+The other way events are associated with Protip is in deciding on which events
+the tip is shown and hidden. The options 'showEvents' and 'hideEvents' can be
+provided as strings to decide these. The format of the strings is the same as
+the strings you can give to jQuery.bind() - a space-separated list of event
+names.
+
+
+4. OPTIONS (default)
+
+* position ('top right')
+
+The location of the tip relative to the defined anchor. This is a combination of 
+two definitions, separated by a space: 'top', 'centre', 'bottom' plus 'left',
+'centre', 'right'.
+
+* anchor ('mouse')
+
+The thing to which the tooltip's position is relative. Choices are 'mouse' and 
+'element' - the element option referring to the DOM element that triggered the
+tooltip. If 'mouse' is selected, the tooltip will move when the mouse moves.
+
+* offset ([10, -10])
+
+An array containing the x and y offsets, in that order, of the tooltip compared
+to the computed position defined by the position option. Given that the default
+position is 'top right', the default offset moves the tooltip 10 pixels more
+top-rightwards, like a sort of 10-pixel padding between the trigger and the tip.
+
+* tip ('next')
+
+A function from which a jQuery object is to be returned to be used as the tip
+itself. Alternatively, a string identifying one of the predefined set of such
+functions.
+
+* showEvents ('mouseenter')
+
+A space-separated string of events which, when fired on the matched element(s),
+will show the tip.
+
+* hideEvents ('mouseleave')
+
+A space-separated string of events which, when fired on the matched element(s),
+will hide the tip.
+
+* onBeforeShow (undefined)
+
+A handler for the pseudo-event called before the tip is positioned and 
+displayed. It is a pseudo-event because it's actually synchronous: the reason
+being that returning false fromt his function will prevent the tip from being
+shown at all. Not triggered by the API (that would be annoying).
+
+* onShow (undefined)
+
+A handler for the protip.show event, called when the tip has been positioned and
+made visible.
+
+* onBeforeHide (undefined)
+
+A handler for the pseudo-event called before the tip is hidden. This is a 
+pseudo-event because returning false from this function will prevent the hide
+behaviour. Not triggered by the API (that would be annoying).
+
+
+5. API
+
+The API is used to control the tip behaviour from either inside the event 
+handlers or from some other part of your system. The API form of calling 
+.protip() requires you to have already called .protip() on the target element
+to set up the tip in the first place.
+
+Calling API methods simply involves calling .protip() with a string as the first
+argument and additional arguments for the rest. The string, of course, being the
+name of the API function to call and the other arguments becoming arguments to
+that function.
+
+Here are your methods:
+
+* show
+
+Shows the tooltip. If your tip was originally set up with the anchor as 'mouse',
+you will need to provide a mouse event, or at least an object that looks like a
+mouse event for positioning purposes.
+
+* hide
+
+Hides the tooltip.
+
+* reposition
+
+Re-calculates the position of the tooltip if for some reason you have changed
+stuff. If your anchor is 'mouse' you need to provide a mouse event, or at least
+something that looks like a mouse event for purposes of finding the mouse 
+position.
+
+* cohort
+
+This returns all the objects in the original selector, so you can find other,
+related tool tips and, for example, close them, so only one is open at once.
