@@ -122,7 +122,7 @@ $.fn.protip = function(opts){
 		offset: [10, -10],
 		tip: 'next',
 		showEvents: 'mouseenter',
-		hideEvents: 'mouseleave',
+		hideEvents: 'mouseleave'
 	}, args);
 
 	if (typeof args.tip != 'function') {
