@@ -46,7 +46,7 @@ function position(what, where, anchor, offset) {
 $.fn.protip = function(opts){
 	var self = this,
 		args = opts,
-		tip,
+		tip, fixed,
 		api;
 
 	if (api = self.data('protip')) {
@@ -97,12 +97,16 @@ $.fn.protip = function(opts){
 			this.trigger('protip.show');
 		},
 		hide: function() {
+			if (fixed) return;
+
 			if (tip) {
 				tip.hide();
 				this.trigger('protip.hide');
 			}
 		},
 		reposition: function(mouseEvent) {
+			if (fixed) return;
+
 			var anchor = {
 				'top': mouseEvent.pageY,
 				'left': mouseEvent.pageX,
@@ -113,6 +117,12 @@ $.fn.protip = function(opts){
 		},
 		cohort: function() {
 			return self;
+		},
+		fix: function() {
+			fixed = true;
+		},
+		unfix: function() {
+			fixed = false;
 		}
 	};
 
