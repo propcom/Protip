@@ -562,21 +562,21 @@ $('.example-2.trigger').protip({
 			<div class="example-javascript">
 				<h3>Javascript</h3>
 				<pre>
-					$('.example-5.trigger').protip({
-						'anchor': 'element',
-						'onBeforeHide': function() {
-							if ( $(this).data('fixed') ) return false;
-						}
-					});
+$('.example-5.trigger').protip({
+	'anchor': 'element',
+	'onBeforeHide': function() {
+		if ( $(this).data('fixed') ) return false;
+	}
+});
 
-					$('.example-5.trigger').click(function() {
-						if ($(this).data('fixed')) {
-							$(this).data('fixed', false);
-						} 
-						else {
-							$(this).data('fixed', true);
-						}
-					});
+$('.example-5.trigger').click(function() {
+	if ($(this).data('fixed')) {
+		$(this).data('fixed', false);
+	} 
+	else {
+		$(this).data('fixed', true);
+	}
+});
 				</pre>
 			</div>
 
