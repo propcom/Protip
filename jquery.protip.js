@@ -74,6 +74,9 @@ $.fn.protip = function(opts){
 			if (tip === false) {
 				return;
 			}
+			if (tip.is(':visible') && fix) {
+				return;
+			}
 
 			if (anchor == 'mouse') {
 				anchor = {

@@ -169,3 +169,21 @@ position.
 
 This returns all the objects in the original selector, so you can find other,
 related tool tips and, for example, close them, so only one is open at once.
+
+* fix
+
+Call this function to fix the tooltip. This disables the tooltip from being hidden.
+If your `tip` function returns the same DOM element for all elements, this will also
+prevent the tip from showing on other elements too.
+
+* unfix
+
+Resume normal operations, having called fix().
+
+6. BUGS
+
+Bugs! What part of '0.0.2' don't you understand? That any of this works at all
+is a miracle.
+
+On a more serious note, glaring bugs may or may not occur, and there may be
+undesirable behaviour that needs changing.

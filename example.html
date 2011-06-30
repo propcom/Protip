@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Protip awesome amazing demonstration page</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+		<script src="jquery.protip.js" type="text/javascript"></script>
+		<style type="text/css">
+			/**
+			 * html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)
+			 * v1.6.1 2010-09-17 | Authors: Eric Meyer & Richard Clark
+			 * html5doctor.com/html-5-reset-stylesheet/
+			 */
+
+			html, body, div, span, object, iframe,
+			h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+			abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+			small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+			fieldset, form, label, legend,
+			table, caption, tbody, tfoot, thead, tr, th, td,
+			article, aside, canvas, details, figcaption, figure,
+			footer, header, hgroup, menu, nav, section, summary,
+			time, mark, audio, video {
+			  margin: 0;
+			  padding: 0;
+			  border: 0;
+			  font-size: 100%;
+			  font: inherit;
+			  vertical-align: baseline;
+			}
+
+			article, aside, details, figcaption, figure,
+			footer, header, hgroup, menu, nav, section {
+			  display: block;
+			}
+
+			blockquote, q { quotes: none; }
+
+			blockquote:before, blockquote:after,
+			q:before, q:after { content: ""; content: none; }
+
+			ins { background-color: #ff9; color: #000; text-decoration: none; }
+
+			mark { background-color: #ff9; color: #000; font-style: italic; font-weight: bold; }
+
+			del { text-decoration: line-through; }
+
+			abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+
+			table { border-collapse: collapse; border-spacing: 0; }
+
+			hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+
+			input, select { vertical-align: middle; }
+			/******/
+
+			html {
+				background-color: #180773;
+			}
+			body {
+				background-color: white;
+				color: black;
+				width: 70%;
+				margin: 0 auto;
+				padding: 20px;
+				font-family: sans-serif;
+			}
+			h1, h2 {
+				font-family: 'Impact';
+			}
+			h1, h2, h3, h4 {
+				color: #8070D8;
+			}
+			h1 {
+				font-size: 80px;
+				text-align: right;
+			}
+			body > p {
+				text-align: right;
+			}
+			h2 {
+				padding: 4px 20px 8px 20px;
+				background-color: #B4DCE1;
+				font-size: 25px;
+				margin-top: 10%;
+				margin-bottom: 15px;
+				text-shadow: 2px 2px 2px #000;
+			}
+			h3 {
+				font-weight: bold;
+			}
+			h4 {
+				font-weight: bold;
+				margin-bottom: 5px;
+			}
+			sup {
+				vertical-align: super;
+			}
+			div.tip {
+				display: none;
+			}
+			div.trigger {
+				float: left;
+				clear: both;
+				margin-bottom: 5px;
+			}
+			button {
+				display: block;
+				clear: both;
+				border: 0;
+				padding: 5px 8px;
+				background-color: #A5A5A5;
+				/* Firefox 3.6+ */
+				background: -moz-linear-gradient(100% 100% 90deg, #B9F4FF, #4EB6C9);
+
+				/* Safari 4-5, Chrome 1-9 */
+				/* -webkit-gradient(<type>, <point> [, <radius>]?, <point> [, <radius>]? [, <stop>]*) */
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#B9F4FF), to(#4EB6C9));
+
+				/* Safari 5.1+, Chrome 10+ */
+				background: -webkit-linear-gradient(#B9F4FF, #4EB6C9);
+
+				/* Opera 11.10+ */
+				background: -o-linear-gradient(#B9F4FF, #4EB6C9);
+			}
+			.example > div {
+				margin-bottom: 30px;
+			}
+			div.example-staging-area {
+				margin: 20px 24px;
+				padding: 10px;
+				border: 2px solid #604bd8;
+			}
+			div.row {
+				clear: both;
+			}
+			div.row > div {
+				float: left;
+				margin: 10px;
+				width: 30%;
+			}
+			small {
+				font-size: 30%;
+			}
+			pre {
+				white-space: pre;
+				font-family: monospace;
+				margin-left: 24px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>Protip Testing and Exemplification Suite</h1>
+		<p>Hard hats must be worn at all times.</p>
+
+		<div class="example">
+			<script type="text/javascript">
+				$(function() {
+					$('#example-1-go').click(function() {
+						$('.example-1.trigger').protip();
+					});
+				});
+			</script>
+			<h2>Example 1. Default Behaviour</h2>
+			<p>Default behaviour is to take the element immediately after the trigger, 
+			and use that as the tooltip. The tooltip follows the mouse. Developers are 
+			invited to ensure that the intended tooltip immediately follows the target 
+			element in this situation.</p>
+			<p>Failure to place the correct element after the target element may result
+			in unexpected element loss.</p>
+
+			<div class="example-staging-area">
+				<h3>Interactive Example Area</h3>
+				<div class="example-1 trigger">Example tooltip trigger 001</div>
+				<div class="example-1 tip">Example tooltip 001</div>
+				<div class="example-1 trigger">Example tooltip trigger 002</div>
+				<div class="example-1 tip">Example tooltip 002</div>
+				<button id="example-1-go">Activate Example 1</button>
+			</div>
+			<div class="example-html">
+				<h3>HTML</h3>
+				<pre>
+&lt;div class="example-1 tooltip"&gt;Example tooltip trigger 001&lt;/div&gt;
+&lt;div class="example-1 tip"&gt;Example tooltip 002&lt;/div&gt;
+
+&lt;divclass="example-1 tooltip"&gt;Example tooltip trigger 002&lt;/div&gt;
+&lt;div class="example-1 tip"&gt;Example tooltip 002&lt;/div&gt;
+				</pre>
+			</div>
+			<div class="example-javascript">
+				<h3>Javascript</h3>
+				<pre>
+$('.example-1.trigger').protip();
+				</pre>
+			</div>
+
+			<h3>Notes</h3>
+			<p>Please note that the tooltip is not generated until the first time it is 
+			needed. This is the reason the tooltips are visible on the page until you both
+			have pressed the button and also hover over the trigger element. It is
+			advised that you hide the tooltips in CSS to counter this.</p>
+		</div>
+
+		<div class="example">
+			<script type="text/javascript">
+				$(function() {
+					$('#example-2-go').click(function() {
+						$('.example-2.trigger').protip({
+							'anchor': 'element'
+						});
+					});
+				});
+			</script>
+			<h2>Example 2. Anchor at Element</h2>
+			<p>Protip has a wicked cool ability<sup><small>TM</small></sup> to be anchored relative to the target element
+			instead of the mouse cursor.</p>
+			<p>There are no known permanent side-effects to this procedure.</p>
+
+			<div class="example-staging-area">
+				<h3>Interactive Example Area</h3>
+				<div class="example-2 trigger">Example tooltip trigger 003</div>
+				<div class="example-2 tip">Example tooltip 003</div>
+				<div class="example-2 trigger">Example tooltip trigger 004</div>
+				<div class="example-2 tip">Example tooltip 004</div>
+				<button id="example-2-go">Activate Example 2</button>
+			</div>
+			<div class="example-html">
+				<h3>HTML</h3>
+				<pre>
+&lt;div class="example-2 trigger"&gt;Example tooltip trigger 003&lt;/div&gt;
+&lt;div class="example-2 tip"&gt;Example tooltip&lt;/div&gt;
+
+&lt;div class="example-2 trigger"&gt;Example tooltip trigger 004&lt;/div&gt;
+&lt;div class="example-2 tip"&gt;Example tooltip&lt;/div&gt;
+				</pre>
+			</div>
+			<div class="example-javascript">
+				<h3>Javascript</h3>
+				<pre>
+$('.example-2.trigger').protip({
+	'anchor': 'element'
+});
+				</pre>
+			</div>
+		</div>
+
+		<div class="example">
+			<script type="text/javascript">
+				$(function() {
+					$('#example-3a-go, #example-3-go').click(function(){
+						$('.example-3a.trigger').protip({
+							'position': 'top left',
+							'offset': [0,0]
+						});
+					});
+					$('#example-3b-go, #example-3-go').click(function(){
+						$('.example-3b.trigger').protip({
+							'position': 'top centre',
+							'offset': [0,0]
+						});
+					});
+					$('#example-3c-go, #example-3-go').click(function(){
+						$('.example-3c.trigger').protip({
+							'position': 'top right',
+							'offset': [0,0]
+						});
+					});
+					$('#example-3d-go, #example-3-go').click(function(){
+						$('.example-3d.trigger').protip({
+							'position': 'centre left',
+							'offset': [0,0]
+						});
+					});
+					$('#example-3e-go, #example-3-go').click(function(){
+						$('.example-3e.trigger').protip({
+							'position': 'centre centre',
+							'offset': [0,0]
+						});
+					});
+					$('#example-3f-go, #example-3-go').click(function(){
+						$('.example-3f.trigger').protip({
+							'position': 'centre right',
+							'offset': [0,0]
+						});
+					});
+					$('#example-3g-go, #example-3-go').click(function(){
+						$('.example-3g.trigger').protip({
+							'position': 'bottom left',
+							'offset': [0,0]
+						});
+					});
+					$('#example-3h-go, #example-3-go').click(function(){
+						$('.example-3h.trigger').protip({
+							'position': 'bottom centre',
+							'offset': [0,0]
+						});
+					});
+					$('#example-3i-go, #example-3-go').click(function(){
+						$('.example-3i.trigger').protip({
+							'position': 'bottom right',
+							'offset': [0,0]
+						});
+					});
+				});
+			</script>
+			<h2>Example 3. Anchor Position</h2>
+			<p>There are eight predetermined tooltip relative location docking nodes available to every trigger.
+			You may request them by standard combinatory nomenclature.</p>
+			<p>There is also a Tooltip Configuration Parameter<sup><small>TM</small></sup> 'offset' which allows 
+			dynamic relative repositioning of the tooltip by combining a horizontal displacement coordinate with a 
+			vertical displacement coordinate in an array or array-like structure.</p>
+			<div class="example-staging-area example-3">
+				<h3>Interactive Example Area</h3>
+				<div class="row">
+					<div>
+						<h4>Example 3a. "top left"</h4>
+						<div class="example-3a trigger">Example tooltip trigger 005</div>
+						<div class="example-3a tip">Example tooltip 005</div>
+						<button id="example-3a-go">Activate Example 3a</button>
+					</div>
+					<div>
+						<h4>Example 3b. "top centre"</h4>
+						<div class="example-3b trigger">Example tooltip trigger 006</div>
+						<div class="example-3b tip">Example tooltip 006</div>
+						<button id="example-3b-go">Activate Example 3b</button>
+					</div>
+					<div>
+						<h4>Example 3c. "top right"</h4>
+						<div class="example-3c trigger">Example tooltip trigger 007</div>
+						<div class="example-3c tip">Example tooltip 007</div>
+						<button id="example-3c-go">Activate Example 3c</button>
+					</div>
+				</div>
+				<div class="row">
+					<div>
+						<h4>Example 3d. "centre left"</h4>
+						<div class="example-3d trigger">Example tooltip trigger 008</div>
+						<div class="example-3d tip">Example tooltip 008</div>
+						<button id="example-3d-go">Activate Example 3d</button>
+					</div>
+					<div>
+						<h4>Example 3e. "centre centre"</h4>
+						<div class="example-3e trigger">Example tooltip trigger 009</div>
+						<div class="example-3e tip">Example tooltip 009</div>
+						<button id="example-3e-go">Activate Example 3e</button>
+					</div>
+					<div>
+						<h4>Example 3f. "centre right"</h4>
+						<div class="example-3f trigger">Example tooltip trigger 010</div>
+						<div class="example-3f tip">Example tooltip 010</div>
+						<button id="example-3f-go">Activate Example 3f</button>
+					</div>
+				</div>
+				<div class="row">
+					<div>
+						<h4>Example 3g. "bottom left"</h4>
+						<div class="example-3g trigger">Example tooltip trigger 011</div>
+						<div class="example-3g tip">Example tooltip 011</div>
+						<button id="example-3g-go">Activate Example 3g</button>
+					</div>
+					<div>
+						<h4>Example 3h. "bottom centre"</h4>
+						<div class="example-3h trigger">Example tooltip trigger 012</div>
+						<div class="example-3h tip">Example tooltip 012</div>
+						<button id="example-3h-go">Activate Example 3h</button>
+					</div>
+					<div>
+						<h4>Example 3i. "bottom right"</h4>
+						<div class="example-3i trigger">Example tooltip trigger 013</div>
+						<div class="example-3i tip">Example tooltip 013</div>
+						<button id="example-3i-go">Activate Example 3i</button>
+					</div>
+					<button id="example-3-go">Activate All Example 3 Examples</button>
+				</div>
+			</div>
+			<div class="example-html">
+				<h4>HTML</h4>
+				<pre>
+&lt;div class="example-3a trigger"&gt;Example tooltip trigger 005&lt;/div&gt;
+&lt;div class="example-3a tip"&gt;Example tooltip 005&lt;/div&gt;
+
+&lt;div class="example-3b trigger"&gt;Example tooltip trigger 006&lt;/div&gt;
+&lt;div class="example-3b tip"&gt;Example tooltip 006&lt;/div&gt;
+
+&lt;div class="example-3c trigger"&gt;Example tooltip trigger 007&lt;/div&gt;
+&lt;div class="example-3c tip"&gt;Example tooltip 007&lt;/div&gt;
+
+&lt;div class="example-3d trigger"&gt;Example tooltip trigger 008&lt;/div&gt;
+&lt;div class="example-3d tip"&gt;Example tooltip 008&lt;/div&gt;
+
+&lt;div class="example-3e trigger"&gt;Example tooltip trigger 009&lt;/div&gt;
+&lt;div class="example-3e tip"&gt;Example tooltip 009&lt;/div&gt;
+
+&lt;div class="example-3f trigger"&gt;Example tooltip trigger 010&lt;/div&gt;
+&lt;div class="example-3f tip"&gt;Example tooltip 010&lt;/div&gt;
+
+&lt;div class="example-3g trigger"&gt;Example tooltip trigger 011&lt;/div&gt;
+&lt;div class="example-3g tip"&gt;Example tooltip 011&lt;/div&gt;
+
+&lt;div class="example-3h trigger"&gt;Example tooltip trigger 012&lt;/div&gt;
+&lt;div class="example-3h tip"&gt;Example tooltip 012&lt;/div&gt;
+
+&lt;div class="example-3i trigger"&gt;Example tooltip trigger 013&lt;/div&gt;
+&lt;div class="example-3i tip"&gt;Example tooltip 013&lt;/div&gt;
+				</pre>
+			</div>
+			<div class="example-javascript">
+				<h4>Javascript</h4>
+				<pre>
+$('.example-3a.trigger').protip({
+	'position': 'top left'
+});
+
+$('.example-3b.trigger').protip({
+	'position': 'top centre'
+});
+
+$('.example-3c.trigger').protip({
+	'position': 'top right'
+});
+
+$('.example-3d.trigger').protip({
+	'position': 'centre left'
+});
+
+$('.example-3e.trigger').protip({
+	'position': 'centre centre'
+});
+
+$('.example-3f.trigger').protip({
+	'position': 'centre right'
+});
+
+$('.example-3g.trigger').protip({
+	'position': 'bottom left'
+});
+
+$('.example-3h.trigger').protip({
+	'position': 'bottom centre'
+});
+
+$('.example-3i.trigger').protip({
+	'position': 'bottom right'
+});
+				</pre>
+			</div>
+			<h3>Notes</h3>
+			<p>When the mouse cursor is over the tooltip, it goes away. This is an undocumented
+			feature and is likely to be removed in future versions.</p>
+		</div>
+
+		<div class="example">
+			<script type="text/javascript">
+				$(function() {
+					$('#example-4-go').click(function() {
+						$('.example-4.trigger').protip({
+							'anchor': 'element',
+							'tip': function() {
+								var r = $(this).clone();
+								var t = r.text();
+
+								r.html( t.replace( 'trigger ', '' ) );
+								r.removeClass('trigger').addClass('tip');
+								r.appendTo('body');
+								return r;
+							}
+						});
+					});
+				});
+			</script>
+			<h2>Example 4. Selecting the Tooltip</h2>
+			<p>The prime purpose of Protip is to allow you to select manually the tooltip that is
+			shown at the element. The default behaviour is to take the element following the trigger
+			but you can provide a function that returns any jQuery object instead.</p>
+
+			<p>This is known as Having Useful Functionality.</p>
+
+			<p>In this example we clone the trigger, change the content and classes, and return this
+			altered clone.</p>
+
+			<div class="example-staging-area">
+				<h3>Interactive Example Area</h3>
+				<div class="example-4 trigger">Example tooltip trigger 014</div>
+				<div class="example-4 trigger">Example tooltip trigger 015</div>
+				<button id="example-4-go">Activate Example 4</button>
+			</div>
+			<div class="example-html">
+				<h3>HTML</h3>
+				<pre>
+&lt;div class="example-4 trigger"&gt;Example tooltip trigger 014&lt;/div&gt;
+&lt;div class="example-4 trigger"&gt;Example tooltip trigger 015&lt;/div&gt;
+				</pre>
+			</div>
+			<div class="example-javascript">
+				<h3>Javascript</h3>
+				<pre>
+$('.example-2.trigger').protip({
+	'anchor': 'element',
+	'tip': function() {
+		var r = $(this).clone();
+		var t = r.text();
+
+		r.html( t.replace( 'trigger ', '' ) );
+		r.removeClass('trigger').addClass('tip');
+		r.appendTo('body');
+		return r;
+	}
+});
+				</pre>
+			</div>
+
+			<h3>Notes</h3>
+			<p>It is necessary to ensure manually that your tooltip element is part
+			of the DOM, since a good compromise for where to put it has not yet been
+			established.</p>
+		</div>
+	</body>
+</html>
