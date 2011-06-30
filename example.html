@@ -514,5 +514,61 @@ $('.example-2.trigger').protip({
 			of the DOM, since a good compromise for where to put it has not yet been
 			established.</p>
 		</div>
+
+		<div class="example">
+			<script type="text/javascript">
+				$(function() {
+					$('#example-5-go').click(function() {
+						$('.example-5.trigger').protip({
+							onBeforeHide: function() {
+								if ( $(this).data('fixed') ) return false;
+							}
+						});
+					});
+
+					$('.example-5.trigger').click(function() {
+						if ($(this).data('fixed')) {
+							$(this).data('fixed', false);
+						} 
+						else {
+							$(this).data('fixed', true);
+						}
+					});
+				});
+			</script>
+			<h2>Example 5. Not Hiding The Tooltip</h2>
+			<p>You can stop the hiding of the tooltip by using the onBeforeShow and onBeforeHide options.</p>
+
+			<div class="example-staging-area">
+				<h3>Interactive Example Area</h3>
+				<div class="example-5 trigger">Example tooltip trigger 016</div>
+				<div class="example-5 tip">Example tooltip 016<br/>Click to fix</div>
+				<div class="example-5 trigger">Example tooltip trigger 017</div>
+				<div class="example-5 tip">Example tooltip 017<br/>Click to fix</div>
+				<button id="example-5-go">Activate Example 5</button>
+			</div>
+			<div class="example-html">
+				<h3>HTML</h3>
+				<pre>
+&lt;div class="example-1 tooltip"&gt;Example tooltip trigger 001&lt;/div&gt;
+&lt;div class="example-1 tip"&gt;Example tooltip 002&lt;/div&gt;
+
+&lt;divclass="example-1 tooltip"&gt;Example tooltip trigger 002&lt;/div&gt;
+&lt;div class="example-1 tip"&gt;Example tooltip 002&lt;/div&gt;
+				</pre>
+			</div>
+			<div class="example-javascript">
+				<h3>Javascript</h3>
+				<pre>
+				</pre>
+			</div>
+
+			<h3>Notes</h3>
+			<p>Please note that the tooltip is not generated until the first time it is 
+			needed. This is the reason the tooltips are visible on the page until you both
+			have pressed the button and also hover over the trigger element. It is
+			advised that you hide the tooltips in CSS to counter this.</p>
+		</div>
+
 	</body>
 </html>
